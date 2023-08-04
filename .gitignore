@@ -19,3 +19,13 @@
 
 # Go workspace file
 go.work
+
+.coverage*
+*.rdb
+*.log*
+*sqlite*
+
+.dist/
+.idea/
+.vscode/
+htmlcov/
