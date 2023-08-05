@@ -177,7 +177,6 @@ linters:
     - predeclared
     - promlinter
     - revive
-    - staticcheck
     - stylecheck
     - tagliatelle
     - testpackage
