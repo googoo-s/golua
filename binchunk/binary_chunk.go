@@ -1,5 +1,31 @@
 package binchunk
 
+
+const (
+	LUA_SIGNATURE    = "\x1bLua"
+	LUAC_VERSION     = 0x53
+	LUAC_FORMAT      = 0
+	LUAC_DATA        = "\x19\x93\r\n\x1a\n"
+	CINT_SIZE        = 4
+	CSIZET_SIZE      = 8
+	INSTRUCTION_SIZE = 4
+	LUA_INTEGER_SIZE = 8
+	LUA_NUMBER_SIZE  = 8
+	LUAC_INT         = 0x5678
+	LUAC_NUM         = 370.5
+)
+
+
+// 常量类型
+const (
+	TAG_NIL       = 0x00
+	TAG_BOOLEAN   = 0x01
+	TAG_NUMBER    = 0x03
+	TAG_INTEGER   = 0x13
+	TAG_SHORT_STR = 0x04
+	TAG_LONG_STR  = 0x14
+)
+
 // binaryChunk 总体结构
 type binaryChunk struct {
 	// 头部
@@ -34,20 +60,6 @@ type header struct {
 	// LUAC_NUM，头部的最后n个字节存放Lua浮点数370.5，头部的最后n个字节存放Lua浮点数370.5
 	luacNum float64
 }
-
-const (
-	LUA_SIGNATURE    = "\x1bLua"
-	LUAC_VERSION     = 0x53
-	LUAC_FORMAT      = 0
-	LUAC_DATA        = "\x19\x93\r\n\x1a\n"
-	CINT_SIZE        = 4
-	CSIZET_SIZE      = 8
-	INSTRUCTION_SIZE = 4
-	LUA_INTEGER_SIZE = 8
-	LUA_NUMBER_SIZE  = 8
-	LUAC_INT         = 0x5678
-	LUAC_NUM         = 370.5
-)
 
 
 type Prototype struct {
@@ -95,15 +107,7 @@ type Upvalue struct {
 	Idx     byte
 }
 
-// 常量类型
-const (
-	TAG_NIL       = 0x00
-	TAG_BOOLEAN   = 0x01
-	TAG_NUMBER    = 0x03
-	TAG_INTEGER   = 0x13
-	TAG_SHORT_STR = 0x04
-	TAG_LONG_STR  = 0x14
-)
+
 
 // 解析二进制chunk
 func Undump(data []byte) * Prototype {
